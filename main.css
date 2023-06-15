@@ -1,9 +1,25 @@
 .container {
   display: grid;
   height: 100vh;
-  grid-template-columns: [l-sidebar-s] 1fr 1fr 1fr [l-sidebar-e] 1fr 1fr 1fr 1fr 1fr 1fr [r-sidebar-s] 1fr 1fr 1fr [r-sidebar-e];
-  grid-template-rows: [header-s] 80px [header-e] 1fr [footer-s] 100px [footer-e];
+  grid-template-rows: 80px 1fr 100px;
   grid-gap: 15px 10px;
+
+  /* Реализация, с применением областей: но, это не удобно для данного примера, так как области должны иметь прямоугольную форму 
+  и ячейки в областях должны быть располодены друг под другом, без пропусков. */
+
+  grid-template-areas: 
+  "header header header header header header header header header header header header"
+  "left left left content content content content content content right right right"
+  "footer footer footer footer footer footer footer footer footer footer footer footer"
+
+
+  /* Реализация, с применением именованных линий - для классов: применение в комментариях:
+
+  grid-template-columns: [l-sidebar-s] repeat(3, 1fr) [l-sidebar-e] repeat(6, 1fr) [r-sidebar-s] repeat(3, 1fr) [r-sidebar-e];
+  grid-template-rows: [header-s] 80px [header-e] 1fr [footer-s] 100px [footer-e];
+
+  */
+
 }
 
 .content {
@@ -14,34 +30,54 @@
 .header {
   background: #A9F1DF;
   opacity: 80%;
+  grid-area: header;
+
+  /* 
   grid-column: l-sidebar-s / r-sidebar-e;
-  grid-row: header-s / header-e;
+  grid-row: header-s / header-e; 
+  */
 }
 
 .left-sidebar {
   background: #FFBBBB;
   opacity: 80%;
+  grid-area: left;
+
+  /*
   grid-column: l-sidebar-s / l-sidebar-e;
   grid-row: header-e / footer-s;
+  */  
 }
 
 .main {
   background: #D8B5FF;
   opacity: 80%;
+  grid-area: content;
+
+  /*
   grid-column: l-sidebar-e / r-sidebar-s;
   grid-row: header-e / footer-s;
+  */
 }
 
 .right-sidebar {
   background: #1EAE98;
   opacity: 80%;
+  grid-area: right;
+
+  /* 
   grid-column: r-sidebar-s / r-sidebar-e;
-  grid-row: header-e / footer-s;
+  grid-row: header-e / footer-s; 
+  */
 }
 
 .footer {
   background: #BFF098;
   opacity: 80%;
+  grid-area: footer;
+
+  /* 
   grid-column: l-sidebar-s / r-sidebar-e;
-  grid-row: footer-s / footer-e;
+  grid-row: footer-s / footer-e; 
+  */  
 }
